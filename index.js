@@ -28,14 +28,15 @@ module.exports = class BoolJSMySQL extends DatabaseLoader {
 
     async fetchModels (instance, name, Component, connection) {
         const app = instance.getComponents();
+        const { models } = this;
 
-        const args = [ null, app, { connection, Sequelize } ];
+        const args = [ null, app, { connection, Sequelize, models } ];
 
         const SchemaClass = Function.prototype.bind.apply(Component, args);
         const schemaInstance = new SchemaClass();
         const schema = schemaInstance.__schema;
 
-        this.models[name] = schema;
+        models[name] = schema;
 
         if (Component.associations !== undefined &&
             typeof Component.associations === 'function') {
