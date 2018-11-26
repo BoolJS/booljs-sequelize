@@ -1,10 +1,10 @@
 # Bool.js - Sequelize Driver
 
-[![Build Status](https://travis-ci.org/BoolJS/booljs-mysql.svg?branch=master)](https://travis-ci.org/BoolJS/booljs-mysql) [![Dependencies status for BoolJS](https://david-dm.org/booljs/booljs-mysql.svg)](https://david-dm.org/booljs/booljs-mysql) [![devDependency Status](https://david-dm.org/booljs/booljs-mysql/dev-status.svg)](https://david-dm.org/booljs/booljs-mysql#info=devDependencies) [![Code Climate](https://codeclimate.com/github/BoolJS/booljs-mysql/badges/gpa.svg)](https://codeclimate.com/github/BoolJS/booljs-mysql) [![Inline docs](http://inch-ci.org/github/booljs/booljs-mysql.svg?branch=master)](http://inch-ci.org/github/booljs/booljs-mysql)
+[![Build Status](https://travis-ci.org/BoolJS/booljs-sequelize.svg?branch=master)](https://travis-ci.org/BoolJS/booljs-sequelize) [![Dependencies status for BoolJS](https://david-dm.org/booljs/booljs-sequelize.svg)](https://david-dm.org/booljs/booljs-sequelize) [![devDependency Status](https://david-dm.org/booljs/booljs-sequelize/dev-status.svg)](https://david-dm.org/booljs/booljs-sequelize#info=devDependencies) [![Code Climate](https://codeclimate.com/github/BoolJS/booljs-sequelize/badges/gpa.svg)](https://codeclimate.com/github/BoolJS/booljs-sequelize) [![Inline docs](http://inch-ci.org/github/booljs/booljs-sequelize.svg?branch=master)](http://inch-ci.org/github/booljs/booljs-sequelize)
 
-[![BoolJS NPM icon](https://nodei.co/npm/@booljs/mysql.png)](https://npmjs.com/package/@booljs/mysql)
+[![BoolJS NPM icon](https://nodei.co/npm/@booljs/sequelize.png)](https://npmjs.com/package/@booljs/sequelize)
 
-[![Join the chat at https://gitter.im/BoolJS/booljs-mysql](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BoolJS/booljs-mysql?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/BoolJS/booljs-sequelize](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BoolJS/booljs-sequelize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## FAQ
 
