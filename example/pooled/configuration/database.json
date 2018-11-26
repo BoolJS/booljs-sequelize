@@ -1,0 +1,39 @@
+{
+
+    "development": {
+        "dialect": "mysql",
+        "host": "localhost",
+        "database": "db",
+        "username": "root",
+        "pool": {
+            "max": 5,
+            "idle": 30000,
+            "acquire": 60000
+        }
+    },
+
+    "test": {
+        "dialect": "mysql",
+        "host": "localhost",
+        "username": "root",
+        "database": "db_test",
+        "pool": {
+            "max": 5,
+            "idle": 30000,
+            "acquire": 60000
+        }
+    },
+
+    "production": {
+        "dialect": "mysql",
+        "host": "example.com",
+        "database": "db",
+        "username": "root",
+        "pool": {
+            "max": 5,
+            "idle": 30000,
+            "acquire": 60000
+        }
+    }
+
+}

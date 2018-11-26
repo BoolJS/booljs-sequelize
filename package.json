@@ -1,0 +1,49 @@
+{
+  "name": "@booljs/sequelize",
+  "version": "0.0.1",
+  "description": "Sequelize driver for BoolJS",
+  "main": "index.js",
+  "license": "GPL-3.0",
+  "scripts": {
+    "pretest": "eslint \"**/*.js\"",
+    "test": "cross-env NODE_ENV=test mocha --exit --timeout 5000 test/_.js test/*"
+  },
+  "keywords": [
+    "bool.js",
+    "sequelize",
+    "driver"
+  ],
+  "author": {
+    "name": "Pablo Andrés Dorado Suárez",
+    "email": "hola@pablodorado.com",
+    "url": "https://pablodorado.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoolJS/booljs-sequelize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BoolJS/booljs-sequelize/issues"
+  },
+  "homepage": "https://github.com/BoolJS/booljs-sequelize#readme",
+  "peerDependencies": {
+    "@booljs/api": "0.6.x",
+    "sequelize": "^4.41.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
