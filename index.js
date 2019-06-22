@@ -1,7 +1,8 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const EmptyModel = require('./model');
+const MySQLModel = require('./model');
+const { Schema } = MySQLModel;
 
 const { DatabaseLoader } = require('@booljs/api');
 const { readFileSync } = require('fs');
@@ -54,14 +55,40 @@ module.exports = class BoolJSMySQL extends DatabaseLoader {
         const args = [ null, app, { connection, Sequelize, models } ];
 
         const SchemaClass = Function.prototype.bind.apply(Component, args);
-        const schemaInstance = new SchemaClass();
-        const schema = schemaInstance.__schema;
 
+        const {
+            [Schema]: schema,
+            ...instanceProps
+        } = new SchemaClass();
+
+        Object.assign(schema.prototype, instanceProps);
         models[name] = schema;
 
         if (Component.associations !== undefined &&
             typeof Component.associations === 'function') {
             this.__associations.push(Component.associations);
+        }
+
+        const readOnly = [ 'constructor', 'name', 'length', 'prototype' ];
+
+        const staticsKeys = Object
+            .getOwnPropertyNames(Component)
+            .filter(key => Component[key] !== Component.associations &&
+                !readOnly.includes(key));
+
+        for (let key of staticsKeys) {
+            schema[key] = Component[key].apply(schema);
+        }
+
+        const methodsKeys = Object
+            .getOwnPropertyNames(Component.prototype)
+            .filter(key => typeof Component.prototype[key] === 'function' &&
+                !readOnly.includes(key));
+
+        for (let key of methodsKeys) {
+            schema.prototype[key] = function (...args) {
+                return Component.prototype[key].apply(this, args);
+            };
         }
 
         return schema;
@@ -74,7 +101,7 @@ module.exports = class BoolJSMySQL extends DatabaseLoader {
     }
 
     modelClass () {
-        return EmptyModel;
+        return MySQLModel;
     }
 
     modelTemplate () {
