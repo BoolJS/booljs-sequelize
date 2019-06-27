@@ -77,7 +77,9 @@ module.exports = class BoolJSMySQL extends DatabaseLoader {
                 !readOnly.includes(key));
 
         for (let key of staticsKeys) {
-            schema[key] = Component[key].apply(schema);
+            schema[key] = function (...args) {
+                return Component[key].apply(this, args);
+            };
         }
 
         const methodsKeys = Object
