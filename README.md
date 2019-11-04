@@ -1,20 +1,56 @@
-# Bool.js - Sequelize Driver
+<p align="center"><img src="https://cdn.rawgit.com/BoolJS/booljs/master/logo.svg" width="50%"></p>
 
-[![Build Status](https://travis-ci.org/BoolJS/booljs-sequelize.svg?branch=master)](https://travis-ci.org/BoolJS/booljs-sequelize) [![Dependencies status for BoolJS](https://david-dm.org/booljs/booljs-sequelize.svg)](https://david-dm.org/booljs/booljs-sequelize) [![devDependency Status](https://david-dm.org/booljs/booljs-sequelize/dev-status.svg)](https://david-dm.org/booljs/booljs-sequelize#info=devDependencies) [![Code Climate](https://codeclimate.com/github/BoolJS/booljs-sequelize/badges/gpa.svg)](https://codeclimate.com/github/BoolJS/booljs-sequelize) [![Inline docs](http://inch-ci.org/github/booljs/booljs-sequelize.svg?branch=master)](http://inch-ci.org/github/booljs/booljs-sequelize)
+<p align="center">
+    <a href="https://travis-ci.org/BoolJS/booljs-sequelize"><img src="https://img.shields.io/travis/BoolJS/booljs-sequelize.svg?style=flat-square" alt="Build Status"></a>
+    <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-GPL%20v3-green.svg?style=flat-square" alt="License"></a>
+    <a href="https://github.com/BoolJS/booljs-sequelize/releases"><img src="https://img.shields.io/github/release/BoolJS/booljs-sequelize.svg?style=flat-square" alt="Latest Stable Version"></a>
+    <a href="https://david-dm.org/booljs/booljs-sequelize"><img src="https://img.shields.io/david/booljs/booljs-sequelize.svg?style=flat-square" alt="Dependency status"></a>
+    <a href="https://david-dm.org/booljs/booljs-sequelize?type=dev"><img src="https://img.shields.io/david/dev/booljs/booljs-sequelize.svg?style=flat-square" alt="devDependency status"></a>
+    <a href="https://david-dm.org/booljs/booljs-sequelize?type=peer"><img src="https://img.shields.io/david/peer/booljs/booljs-sequelize.svg?style=flat-square" alt="peerDependency status"></a>
+    <a href="https://codeclimate.com/github/BoolJS/booljs-sequelize/maintainability"><img src="https://api.codeclimate.com/v1/badges/102e5750974935be2b3b/maintainability" /></a>
+    <a href="https://codecov.io/gh/BoolJS/booljs"><img src="https://img.shields.io/codecov/c/github/booljs/booljs-sequelize.svg?style=flat-square" alt="Code Coverage"></a>
+    <a href="http://inch-ci.org/github/booljs/booljs-sequelize"><img src="http://inch-ci.org/github/booljs/booljs-sequelize.svg?branch=master" alt="Inline docs"></a>
+    <a href="https://gitter.im/BoolJS/booljs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://img.shields.io/gitter/room/booljs/booljs-sequelize.svg?style=flat-square" alt="Join the chat at https://gitter.im/BoolJS/booljs-sequelize"></a>
+</p>
 
-[![BoolJS NPM icon](https://nodei.co/npm/@booljs/sequelize.png)](https://npmjs.com/package/@booljs/sequelize)
+<p align="center">
+    <a href="https://npmjs.com/package/@booljs/sequelize"><img src="https://nodei.co/npm/@booljs/sequelize.png" alt="NPM icon"></a>
+</p>
 
-[![Join the chat at https://gitter.im/BoolJS/booljs-sequelize](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BoolJS/booljs-sequelize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+`@booljs/sequelize` is a database loader intended to enable developers to use Sequelize in the [BoolJS Framework](http://bool.js.org/).
 
-## FAQ
+## Install
 
-### What is bool.js?
-Bool.js is an MVC Framework. But is not just any other framework; it gives us back the power to choose how to organize a well-designed project, so we can choose our dependencies, craft our architecture, choose our data connectors, and finally, work based on cool development structures without hesitating about learning the framework as is.
+Install the package using
 
-Bool.js also reminds the importance of having a cool workspace structure. That's why it's based on namespaces, leading us to focus on our code rather than focusing on managin complicated references to other files in our project.
+```
+npm install @booljs/sequelize
+```
 
-### Can I migrate my projects to bool.js?
-Of course you can. Bool.js is Free Software (not as in a *free* beer, but in *free* as a bird). Just remember to update all of your dependencies, arrange your code in the right project structure (we're very tight at that) and finally, use Node LTS, and further versions.
+BoolJS Sequelize uses some peerDependencies you must have in your project. We encourage using `npm 6+` in all your projects, because is strict in making you declare them in your project.
 
-### What is this?
-`booljs.sequelize` is a driver to enable MySQL users to use `sequelize` library in bool.js
+```
+npm install sequelize@latest
+```
+
+Finally, you might need to get some documentation on the usage of Sequelize. Find it on [their](http://www.sequelize.org) website.
+
+
+## Usage
+
+First, register the `@booljs/sequelize` module in your BoolJS application. Then, add it to the [database drivers](https://)
+
+In `index.js`, declare:
+
+```js
+const Bool = require('booljs');
+
+async function main () {
+    const API = new Bool('com.example.api', [ '@booljs/sequelize' ]);
+        .setDatabaseDrivers('booljs.sequelize');
+
+    return API.run();
+}
+
+module.exports = main();
+```
