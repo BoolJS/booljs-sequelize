@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-    <a href="https://npmjs.com/packages/@booljs/sequelize"><img src="https://nodei.co/npm/@booljs/sequelize.png" alt="NPM icon"></a>
+    <a href="https://npmjs.com/package/@booljs/sequelize"><img src="https://nodei.co/npm/@booljs/sequelize.png" alt="NPM icon"></a>
 </p>
 
 `@booljs/sequelize` is a database loader intended to enable developers to use Sequelize in the [BoolJS Framework](http://bool.js.org/).
