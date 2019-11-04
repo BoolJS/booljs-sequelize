@@ -1,14 +1,14 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const MySQLModel = require('./model');
-const { Schema } = MySQLModel;
+const SequelizeModel = require('./model');
+const { Schema } = SequelizeModel;
 
 const { DatabaseLoader } = require('@booljs/api');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
-module.exports = class BoolJSMySQL extends DatabaseLoader {
+module.exports = class BoolJSSequelize extends DatabaseLoader {
     constructor ({ connectionSettingsStoreName = 'sequelize' } = {}) {
         super('booljs.sequelize', connectionSettingsStoreName);
     }
@@ -69,31 +69,18 @@ module.exports = class BoolJSMySQL extends DatabaseLoader {
             this.__associations.push(Component.associations);
         }
 
-        const readOnly = [ 'constructor', 'name', 'length', 'prototype' ];
-
-        const staticsKeys = Object
-            .getOwnPropertyNames(Component)
-            .filter(key => Component[key] !== Component.associations &&
-                !readOnly.includes(key));
-
-        for (let key of staticsKeys) {
-            schema[key] = function (...args) {
-                return Component[key].apply(this, args);
-            };
-        }
-
-        const methodsKeys = Object
-            .getOwnPropertyNames(Component.prototype)
-            .filter(key => typeof Component.prototype[key] === 'function' &&
-                !readOnly.includes(key));
-
-        for (let key of methodsKeys) {
-            schema.prototype[key] = function (...args) {
-                return Component.prototype[key].apply(this, args);
-            };
-        }
+        BoolJSSequelize.injectProperties(Component, schema);
+        BoolJSSequelize.injectProperties(Component.prototype, schema.prototype);
 
         return schema;
+    }
+
+    static injectProperties (Component, schema) {
+        const readOnly = [ 'associations', 'constructor', 'name', 'length', 'prototype' ];
+
+        Object.entries(Object.getOwnPropertyDescriptors(Component))
+            .filter(([ key ]) => !readOnly.includes(key))
+            .map(([ key, descriptor ]) => Object.defineProperty(schema, key, descriptor));
     }
 
     async afterFetch () {
@@ -103,7 +90,7 @@ module.exports = class BoolJSMySQL extends DatabaseLoader {
     }
 
     modelClass () {
-        return MySQLModel;
+        return SequelizeModel;
     }
 
     modelTemplate () {
